@@ -1,0 +1,39 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AI Project</title>
+</head>
+
+<body>
+    <div class="box">
+        <div class="container">
+            <h2>مسئله n-queen</h2>
+            <div class="input-container">
+                <label>اندازه جدول:</label>
+                <input class="input" type="number" id="sizeInput" min="1" max="10">
+                <button class="btn" onclick="">ایجاد</button>
+            </div>
+            <div class="select-container">
+                <div class="options-container">
+                    <label class="my-radio">
+                        <input type="radio" name="radio-group">
+                        الگوریتم ژنتیک
+                    </label>
+                    <label class="my-radio">
+                        <input type="radio" name="radio-group">
+                        الگوریتم بازگشتی
+                    </label>
+                </div>
+
+                <button id="btn-start" class="btn" onclick="">شروع</button>
+            </div>
+
+        </div>
+        <table id="board"></table>
+
+</body>
+
+</html>
