@@ -10,14 +10,18 @@
 <body>
     <div class="box">
         <div class="container">
-            <h2>مسئله n-queen</h2>
-            <div class="input-container">
+            <div class="title-container">
+                <h2>مسئله n-queen</h2>
+                <p id="para">اندازه جدول را مشخص کنید.</p>
+
+            </div>
+            <div id="input-container" class="input-container">
                 <label>اندازه جدول:</label>
                 <input class="input" type="number" id="sizeInput" min="1" max="10">
-                <button class="btn" onclick="">ایجاد</button>
+                <button class="btn" onclick="generateBoard()">ایجاد</button>
             </div>
-            <div class="select-container">
-                <div class="options-container">
+            <div id="select-container" class="select-container">
+                <div id="options-container" class="options-container">
                     <label class="my-radio">
                         <input type="radio" name="radio-group">
                         الگوریتم ژنتیک
@@ -28,12 +32,14 @@
                     </label>
                 </div>
 
-                <button id="btn-start" class="btn" onclick="">شروع</button>
+                <button id="btn-start" class="btn" onclick="startClicked()">شروع</button>
             </div>
 
         </div>
         <table id="board"></table>
 
 </body>
+
+<script src="app.js"></script>
 
 </html>

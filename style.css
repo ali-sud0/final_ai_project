@@ -1,23 +1,21 @@
 @font-face {
     font-family: 'YekanRegular';
     src: url('fonts/YekanBakhFaNum-Regular.ttf') format('truetype');
-  }
+}
+
 @font-face {
     font-family: 'YekanBold';
     src: url('fonts/YekanBakhFaNum-Bold.ttf') format('truetype');
 }
 
 
-
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     direction: rtl;
 }
-.test{
 
-}
 body {
     display: flex;
     justify-content: center;
@@ -25,24 +23,35 @@ body {
     padding: 20px;
 }
 
-h2{
+.title-container{
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
     color: #212121;
     font-family: YekanBold;
 }
+p{
+    font-family: YekanRegular;
+    font-size: 14px;
+    opacity: 50%;
+}
 
-.box{
+.box {
     width: max-content;
     height: max-content;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: start;
     gap: 32px;
     background: white;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
 }
+
 .container {
     width: max-content;
     height: max-content;
@@ -52,20 +61,20 @@ h2{
     align-items: center;
 }
 
-.input-container{
+.input-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 8px;
 }
 
-.input-container > label{
+.input-container>label {
     opacity: 50%;
     font-family: YekanRegular;
     font-size: 14px;
 }
 
-.input{
+.input {
     outline: none;
     width: 120px;
     font-family: YekanRegular;
@@ -74,11 +83,12 @@ h2{
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 4px;
 }
-.input:focus{
+
+.input:focus {
     border: 1px solid rgba(76, 175, 80, 1.0);
 }
 
-.btn{
+.btn {
     border: none;
     padding: 4px 8px;
     font-family: YekanRegular;
@@ -87,32 +97,60 @@ h2{
     background-color: #4CAF50;
     color: #ffffff;
 }
-.btn:hover{
+
+.btn:hover {
     background-color: #4a914c;
     box-shadow: 0 4px 8px rgba(76, 175, 80, 0.1);
 }
 
-.options-container{
+.options-container {
     display: flex;
     gap: 8px;
     flex-direction: column;
 }
 
-.select-container{
-    display: flex;
+.select-container {
+    display: none;
     gap: 16px;
     flex-direction: row;
     align-items: end;
 }
-#btn-start{
+
+#btn-start {
     height: 40px;
-    width: 120px;;
+    width: 120px;
+    ;
 }
 
-.my-radio{
+.my-radio {
     display: flex;
     align-items: center;
     gap: 8px;
     font-family: YekanRegular;
     font-size: 14px;
+}
+
+
+#board {
+    border-collapse: collapse;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+td{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    background-color: #769656;
+    cursor: pointer;
+    border: none;
+}
+td:nth-child(odd){
+    background-color: #eeeed2;
+}
+
+.selected {
+    background-size: contain;
+    background-image: url("images/queen.png") !important;
 }
