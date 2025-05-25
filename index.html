@@ -18,28 +18,32 @@
             <div id="input-container" class="input-container">
                 <label>اندازه جدول:</label>
                 <input class="input" type="number" id="sizeInput" min="1" max="10">
-                <button class="btn" onclick="generateBoard()">ایجاد</button>
+                <button id="btn-make" class="btn">ایجاد</button>
             </div>
             <div id="select-container" class="select-container">
                 <div id="options-container" class="options-container">
                     <label class="my-radio">
-                        <input type="radio" name="radio-group">
+                        <input id="radio-gen" type="radio" name="radio-group">
                         الگوریتم ژنتیک
                     </label>
                     <label class="my-radio">
-                        <input type="radio" name="radio-group">
+                        <input id="radio-back" type="radio" name="radio-group">
                         الگوریتم بازگشتی
                     </label>
                 </div>
 
-                <button id="btn-start" class="btn" onclick="startClicked()">شروع</button>
+                <button id="btn-start" class="btn">شروع</button>
             </div>
-
+            <p id="result"></p>
         </div>
-        <table id="board"></table>
+        <div class="boardContainer">
+            <table class="board" id="board1"></table>
+            <table class="board" id="board2"></table>
+        </div>
+        
 
 </body>
 
-<script src="app.js"></script>
+<script type="module" src="app.js"></script>
 
 </html>

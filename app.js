@@ -1,3 +1,5 @@
+import { GeneticAlgorithm } from './GeneticAlgorithm.js';
+
 let size = 0;
 let canStart = false;
 let isQueensOneFilled = false;
@@ -5,26 +7,26 @@ let isQueensOneFilled = false;
 let queensOne;
 let queensTwo;
 
-function generateBoard() {
+document.getElementById("btn-make").addEventListener("click", () => generateBoard("1"));
+document.getElementById("btn-start").addEventListener("click", () => startClicked());
+
+
+function generateBoard(id) {
     const n = document.getElementById("sizeInput").value;
     size = n;
     if (n > 3 && n < 11) {
-        const board = document.getElementById("board");
+        const board = document.getElementById("board" + id);
         board.innerHTML = "";
         for (let i = 0; i < n; i++) {
             let row = board.insertRow();
             for (let j = 0; j < n; j++) {
                 let cell = row.insertCell();
                 cell.style.backgroundColor = (i + j) % 2 === 0 ? "#eeeed2" : "#769656";
-                cell.onclick = () => cell.classList.toggle("selected");
+                cell.onclick = () => { if (canStart === false) { cell.classList.toggle("selected"); } }
             }
         }
 
-        document.getElementById("input-container").style.display = "none";
-        document.getElementById("options-container").style.display = "none";
-        document.getElementById("select-container").style.display = "flex";
-        document.getElementById("para").innerHTML = "حالت ابتدایی را مشخص کنید.";
-        document.getElementById("btn-start").innerHTML = "ادامه";
+        changeUI();
 
     } else {
         alert("اندازه جدول باید بین 4 تا 10 باشد");
@@ -34,43 +36,41 @@ function generateBoard() {
 
 function startClicked() {
     if (canStart === true) {
+        if (document.getElementById("radio-gen").checked) {
+            
+            /* Genetic Algorithm */
 
-        console.log(queensOne);
-        console.log(queensTwo);
+            const geneticSolver = new GeneticAlgorithm(100, size, queensOne, queensTwo);
+            let solution = geneticSolver.runGenerations();
+            showResult(geneticSolver.getSequence());
+        }
 
     } else if (isQueensOneFilled === false) {
-        if (checkQueens()) {
+        if (checkQueens("1")) {
             queensOne = Array.from({ length: size }, () => Array(size).fill(0));
-            fillArray(queensOne);
+            fillArray(queensOne, "1");
 
             isQueensOneFilled = true;
-            generateBoard();
-            document.getElementById("para").innerHTML = "حالت هدف را مشخص کنید.";
-
-        } else {
-            alert("تعداد وزیر ها برابر با تعداد ردیف ها نیست.");
+            document.getElementById("board1").style.pointerEvents = "none";
+            generateBoard("2");
         }
     } else {
-        if (checkQueens()) {
+        if (checkQueens("2")) {
             queensTwo = Array.from({ length: size }, () => Array(size).fill(0));
-            fillArray(queensTwo);
+            fillArray(queensTwo, "2");
 
             canStart = true;
-            document.getElementById("para").innerHTML = "الگوریتم را انتخاب کنید";
-            document.getElementById("options-container").style.display = "flex";
-            document.getElementById("select-container").style.display = "flex";
-            document.getElementById("btn-start").innerHTML = "شروع";
+            document.getElementById("board2").style.pointerEvents = "none";
+            changeUI();
 
-        } else {
-            alert("تعداد وزیر ها برابر با تعداد ردیف ها نیست.");
         }
 
     }
 }
 
-function checkQueens() {
+function checkQueens(id) {
     let count = 0;
-    const board = document.getElementById("board");
+    const board = document.getElementById("board" + id);
     for (let i = 0; i < board.rows.length; i++) {
         for (let j = 0; j < board.rows[i].cells.length; j++) {
             if (getCellBackgroundImage(board.rows[i].cells[j]) !== "none") {
@@ -78,7 +78,14 @@ function checkQueens() {
             }
         }
     }
-    return count == size;
+
+    if (count == size) {
+            return true;
+    } else {
+        alert("تعداد وزیر ها برابر با تعداد ردیف ها نیست.");
+    }
+
+    return false;
 }
 
 function getCellBackgroundImage(cell) {
@@ -86,8 +93,8 @@ function getCellBackgroundImage(cell) {
     return bgImage;
 }
 
-function fillArray(array) {
-    const board = document.getElementById("board");
+function fillArray(array, id) {
+    const board = document.getElementById("board" + id);
     for (let i = 0; i < board.rows.length; i++) {
         for (let j = 0; j < board.rows[i].cells.length; j++) {
             if (getCellBackgroundImage(board.rows[i].cells[j]) !== "none") {
@@ -96,5 +103,37 @@ function fillArray(array) {
                 array[i][j] = 0;
             }
         }
+    }
+}
+
+function showResult(array){
+    let result = "";
+    let seqCount = 0;
+    for(let i=0;i<array.length;i++){
+        result += "\nSequence: " + ++seqCount + "\n";
+        for(let j=0;j<array[i].length;j++){
+            result += array[i][j] + "\n";
+        }
+    }
+    document.getElementById("result").innerText = result;
+
+}
+
+function changeUI() {
+    if (canStart === false) {
+        if (isQueensOneFilled === false) {
+            document.getElementById("input-container").style.display = "none";
+            document.getElementById("options-container").style.display = "none";
+            document.getElementById("select-container").style.display = "flex";
+            document.getElementById("para").innerHTML = "حالت ابتدایی را مشخص کنید.";
+            document.getElementById("btn-start").innerHTML = "ادامه";
+        } else {
+            document.getElementById("para").innerHTML = "حالت هدف را مشخص کنید.";
+        }
+    } else {
+        document.getElementById("para").innerHTML = "الگوریتم را انتخاب کنید";
+        document.getElementById("options-container").style.display = "flex";
+        document.getElementById("select-container").style.display = "flex";
+        document.getElementById("btn-start").innerHTML = "شروع";
     }
 }

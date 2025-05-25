@@ -37,6 +37,10 @@ p{
     font-size: 14px;
     opacity: 50%;
 }
+#result{
+    width: max-content;
+    opacity: 100% !important;
+}
 
 .box {
     width: max-content;
@@ -131,7 +135,13 @@ p{
 }
 
 
-#board {
+.boardContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 32px
+}
+
+.board {
     border-collapse: collapse;
     border: none;
     padding: 0;
