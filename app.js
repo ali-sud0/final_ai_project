@@ -30,7 +30,7 @@ function generateBoard(id) {
         changeUI();
 
     } else {
-        alert("اندازه جدول باید بین 4 تا 10 باشد");
+        alert("board size must be between 4 and 10.");
     }
 }
 
@@ -89,7 +89,7 @@ function checkQueens(id) {
     if (count == size) {
         return true;
     } else {
-        alert("تعداد وزیر ها برابر با تعداد ردیف ها نیست.");
+        alert("The number of queens is not equal to the number of rows.");
     }
 
     return false;
@@ -132,15 +132,15 @@ function changeUI() {
             document.getElementById("input-container").style.display = "none";
             document.getElementById("options-container").style.display = "none";
             document.getElementById("select-container").style.display = "flex";
-            document.getElementById("para").innerHTML = "حالت ابتدایی را مشخص کنید.";
-            document.getElementById("btn-start").innerHTML = "ادامه";
+            document.getElementById("para").innerHTML = "Specify the initial state.";
+            document.getElementById("btn-start").innerHTML = "Next";
         } else {
-            document.getElementById("para").innerHTML = "حالت هدف را مشخص کنید.";
+            document.getElementById("para").innerHTML = "Specify the goal state";
         }
     } else {
-        document.getElementById("para").innerHTML = "الگوریتم را انتخاب کنید";
+        document.getElementById("para").innerHTML = "Select Algorithm.";
         document.getElementById("options-container").style.display = "flex";
         document.getElementById("select-container").style.display = "flex";
-        document.getElementById("btn-start").innerHTML = "شروع";
+        document.getElementById("btn-start").innerHTML = "Start";
     }
 }

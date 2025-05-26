@@ -13,7 +13,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    direction: rtl;
 }
 
 body {
@@ -26,6 +25,7 @@ body {
 .title-container{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 h2 {
