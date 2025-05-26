@@ -1,4 +1,5 @@
 import { GeneticAlgorithm } from './GeneticAlgorithm.js';
+import { BacktrackingAlgorithm } from './BacktrackingAlgorithm.js';
 
 let size = 0;
 let canStart = false;
@@ -37,12 +38,18 @@ function generateBoard(id) {
 function startClicked() {
     if (canStart === true) {
         if (document.getElementById("radio-gen").checked) {
-            
+
             /* Genetic Algorithm */
 
             const geneticSolver = new GeneticAlgorithm(100, size, queensOne, queensTwo);
             let solution = geneticSolver.runGenerations();
             showResult(geneticSolver.getSequence());
+        } else if (document.getElementById("radio-back").checked) {
+
+            /* Backtracking Algorithm */
+            const backSolver = new BacktrackingAlgorithm(size, queensOne, queensTwo);
+            backSolver.solve();
+            showResult(backSolver.getSequence());
         }
 
     } else if (isQueensOneFilled === false) {
@@ -80,7 +87,7 @@ function checkQueens(id) {
     }
 
     if (count == size) {
-            return true;
+        return true;
     } else {
         alert("تعداد وزیر ها برابر با تعداد ردیف ها نیست.");
     }
@@ -106,12 +113,12 @@ function fillArray(array, id) {
     }
 }
 
-function showResult(array){
+function showResult(array) {
     let result = "";
     let seqCount = 0;
-    for(let i=0;i<array.length;i++){
+    for (let i = 0; i < array.length; i++) {
         result += "\nSequence: " + ++seqCount + "\n";
-        for(let j=0;j<array[i].length;j++){
+        for (let j = 0; j < array[i].length; j++) {
             result += array[i][j] + "\n";
         }
     }
