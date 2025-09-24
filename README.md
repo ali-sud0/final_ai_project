@@ -121,6 +121,7 @@ Expected outcome:
 ---
 
 ## Project Structure
+```bash
 final_ai_project/
 ├── BacktrackingAlgorithm.js
 ├── GeneticAlgorithm.js
@@ -131,7 +132,7 @@ final_ai_project/
 ├── fonts/
 ├── LICENSE
 └── README.md
-
+```
 ---
 
 ## Contributing
