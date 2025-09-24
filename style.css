@@ -164,3 +164,10 @@ td:nth-child(odd){
     background-size: contain;
     background-image: url("images/queen.png") !important;
 }
+
+
+@media screen and (max-width: 768px) {
+  .box, .boardContainer {
+    flex-direction: column;
+  }
+}
